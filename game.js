@@ -1,10 +1,9 @@
 // get references
 const btnPlay = document.getElementById("play-button");
-console.log(btnPlay);
 const btnSelects = document.querySelectorAll("#rock, #paper, #scissors");
-console.log(btnSelects);
-let selectedChoice = null;
-items = ["rock", "paper", "scissors"];
+let userChoice = null;
+const items = ["rock", "paper", "scissors"];
+
 const results = document.querySelector("#result");
 const scoreUserTotal = document.querySelector("#user-score");
 const scoreComputerTotal = document.querySelector("#computer-score");
@@ -23,36 +22,35 @@ btnSelects.forEach((btn) => {
     btn.classList.add("selected");
 
     //save value
-    selectedChoice = btn.id;
-    console.log("user's choice:", selectedChoice);
+    userChoice = btn.id;
   });
 });
 
 //add event listener to play button
 btnPlay.addEventListener("click", () => {
-  if (!selectedChoice) {
+  if (!userChoice) {
     alert("please choose rock, paper or scissors!");
   }
 
   // randomly select item for computer
-  const randomItem = items[Math.floor(Math.random() * items.length)];
-  console.log("computer's choice: ", randomItem);
+  const computerChoice = items[Math.floor(Math.random() * items.length)];
 
-  if (selectedChoice === randomItem) {
-    results.textContent = `Yours: ${selectedChoice}, Computer: ${randomItem}, ➡️ It's a tie!`;
+  if (userChoice === computerChoice) {
+    results.textContent = `Computer: ${computerChoice}, ➡️ It's draw!`;
   } else if (
-    (selectedChoice === "rock" && randomItem === "scissors") ||
-    (selectedChoice === "paper" && randomItem === "rock") ||
-    (selectedChoice === "scissors" && randomItem === "paper")
+    (userChoice === "rock" && computerChoice === "scissors") ||
+    (userChoice === "paper" && computerChoice === "rock") ||
+    (userChoice === "scissors" && computerChoice === "paper")
   ) {
-    results.textContent = `Yours: ${selectedChoice}, Computer: ${randomItem} ➡️  You win! 🥳`;
+    results.textContent = `Computer: ${computerChoice} ➡️  You win! 🥳`;
     scoreUser += 1;
   } else {
-    results.textContent = `Yours: ${selectedChoice}, Computer: ${randomItem} ➡️ Computer wins! 😭`;
+    results.textContent = `Computer: ${computerChoice} ➡️ Computer wins! 😭`;
     scoreComputer += 1;
   }
 
   // display result and renew total score
   scoreUserTotal.textContent = scoreUser;
   scoreComputerTotal.textContent = scoreComputer;
+  console.log("User's:", userChoice, "; Computer's:", computerChoice);
 });
