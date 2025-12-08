@@ -10,7 +10,7 @@ const scoreComputerTotal = document.querySelector("#computer-score");
 let scoreUser = 0;
 let scoreComputer = 0;
 
-// add click listener to selection button
+// add click listener to selection buttons
 btnSelects.forEach((btn) => {
   btn.addEventListener("click", () => {
     //remove previous selection
@@ -30,6 +30,7 @@ btnSelects.forEach((btn) => {
 btnPlay.addEventListener("click", () => {
   if (!userChoice) {
     alert("please choose rock, paper or scissors!");
+    return;
   }
 
   // randomly select item for computer
@@ -53,4 +54,8 @@ btnPlay.addEventListener("click", () => {
   scoreUserTotal.textContent = scoreUser;
   scoreComputerTotal.textContent = scoreComputer;
   console.log("User's:", userChoice, "; Computer's:", computerChoice);
+
+  // reset selection
+  btnSelects.forEach((btn) => btn.classList.remove("selected"));
+  userChoice = null;
 });
