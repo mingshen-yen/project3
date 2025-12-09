@@ -2,18 +2,6 @@
 const sentance = process.argv.slice(2);
 console.log("input: ", sentance);
 
-// get inputs
-const newSentance = [];
-const words = sentance.forEach((word) => {
-  const newWord = toPigLatin(word);
-  // add new words to array
-  newSentance.push(newWord);
-});
-// convert array to sentance
-console.log("output: ", newSentance);
-const pigLatinSentance = newSentance.join(" ");
-console.log(pigLatinSentance);
-
 //function for translations
 function toPigLatin(word) {
   const vowels = ["a", "e", "i", "o", "u"];
@@ -28,3 +16,16 @@ function toPigLatin(word) {
     return word.slice(2) + firstChar + secondChar + "ay";
   }
 }
+
+// get inputs
+const newSentance = [];
+const words = sentance.forEach((word) => {
+  const newWord = toPigLatin(word);
+  // add new words to array
+  newSentance.push(newWord);
+});
+
+// convert array to sentance
+console.log("output: ", newSentance);
+const pigLatinSentance = newSentance.join(" ");
+console.log(pigLatinSentance);

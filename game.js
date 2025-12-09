@@ -1,9 +1,14 @@
-// get references
+// get buttons
 const btnPlay = document.getElementById("play-button");
 const btnSelects = document.querySelectorAll("#rock, #paper, #scissors");
+
+// get user's selection
 let userChoice = null;
+
+// possible game options for computer
 const items = ["rock", "paper", "scissors"];
 
+// elements for showing result and scores
 const results = document.querySelector("#result");
 const scoreUserTotal = document.querySelector("#user-score");
 const scoreComputerTotal = document.querySelector("#computer-score");
@@ -13,11 +18,6 @@ let scoreComputer = 0;
 // add click listener to selection buttons
 btnSelects.forEach((btn) => {
   btn.addEventListener("click", () => {
-    //remove previous selection
-    btnSelects.forEach((b) => {
-      b.classList.remove("selected");
-    });
-
     //mark as selected
     btn.classList.add("selected");
 
@@ -44,10 +44,10 @@ btnPlay.addEventListener("click", () => {
     (userChoice === "scissors" && computerChoice === "paper")
   ) {
     results.textContent = `Computer: ${computerChoice} ➡️  You win! 🥳`;
-    scoreUser += 1;
+    scoreUser++;
   } else {
     results.textContent = `Computer: ${computerChoice} ➡️ Computer wins! 😭`;
-    scoreComputer += 1;
+    scoreComputer++;
   }
 
   // display result and renew total score
